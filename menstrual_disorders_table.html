@@ -134,6 +134,41 @@
             font-size: 1.2em;
             font-weight: 600;
         }
+
+        .navigation-buttons {
+            position: fixed;
+            top: 30px;
+            left: 30px;
+            display: flex;
+            gap: 15px;
+            z-index: 1000;
+        }
+        
+        .nav-button {
+            background: linear-gradient(135deg, #2c5530, #1e3c72);
+            color: white;
+            padding: 15px 25px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(44, 85, 48, 0.3);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .nav-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(44, 85, 48, 0.4);
+        }
+        
+        .nav-button:active {
+            transform: translateY(-1px);
+        }
         
         @media (max-width: 768px) {
             .container {
@@ -155,10 +190,56 @@
                 font-size: 0.8em;
                 min-width: 70px;
             }
+
+            .navigation-buttons {
+                top: 20px;
+                left: 20px;
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .nav-button {
+                padding: 12px 20px;
+                font-size: 1em;
+            }
         }
+
+         /* Notification styles */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #00b894, #00cec9);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 184, 148, 0.3);
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+            z-index: 1001;
+            font-weight: 600;
+        }
+        
+        .notification.show {
+            transform: translateX(0);
+        }
+    
     </style>
 </head>
 <body>
+    <div class="navigation-buttons">
+        <button class="nav-button" onclick="goBack()">
+            ← Kembali
+        </button>
+        <button class="nav-button" onclick="goHome()">
+            🏠 Beranda
+        </button>
+    </div>
+    
+    <div id="notification" class="notification">
+        Navigasi berhasil!
+    </div>
+
     <div class="container">
         <h1>🩸 Gangguan Menstruasi Abnormal</h1>
         
@@ -269,5 +350,81 @@
             <p><strong>Siklus menstruasi normal:</strong> 21-35 hari dengan durasi 3-7 hari. Jika mengalami salah satu kondisi di atas secara berkelanjutan, sangat disarankan untuk berkonsultasi dengan dokter kandungan untuk evaluasi dan penanganan yang tepat. Gangguan menstruasi dapat menjadi indikator adanya masalah kesehatan yang memerlukan perhatian medis.</p>
         </div>
     </div>
+    
+    <script>
+        function showNotification(message) {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+
+        function goBack() {
+            try {
+                // Coba gunakan history.back() terlebih dahulu
+                if (window.history.length > 1) {
+                    window.history.back();
+                    showNotification('Kembali ke halaman sebelumnya');
+                } else {
+                    // Jika tidak ada history, redirect ke halaman utama
+                    goHome();
+                }
+            } catch (error) {
+                console.log('History back failed, redirecting to home');
+                goHome();
+            }
+        }
+
+        function goHome() {
+            try {
+                // Coba buka halaman utama
+                if (window.opener) {
+                    // Jika dibuka dari window lain, tutup window ini
+                    window.close();
+                } else {
+                    // Redirect ke halaman utama
+                    window.location.href = 'main_landing_page.html';
+                }
+                showNotification('Menuju halaman beranda');
+            } catch (error) {
+                // Fallback jika gagal
+                showNotification('Gunakan tombol back browser atau tutup tab ini');
+                console.log('Navigation failed:', error);
+            }
+        }
+
+        // Handle browser back button
+        window.addEventListener('popstate', function(event) {
+            showNotification('Navigasi dengan tombol browser');
+        });
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', function(event) {
+            // Alt + B untuk kembali
+            if (event.altKey && event.key === 'b') {
+                event.preventDefault();
+                goBack();
+            }
+            // Alt + H untuk home
+            if (event.altKey && event.key === 'h') {
+                event.preventDefault();
+                goHome();
+            }
+            // Escape untuk kembali
+            if (event.key === 'Escape') {
+                goBack();
+            }
+        });
+
+        // Show welcome message
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                showNotification('Gunakan tombol navigasi atau Alt+B untuk kembali');
+            }, 1000);
+        });
+    </script>
 </body>
 </html>
