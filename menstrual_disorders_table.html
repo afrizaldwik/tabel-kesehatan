@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gangguan Menstruasi</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            font-size: 2.2em;
+            font-weight: 600;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .table-container {
+            overflow-x: auto;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        
+        th {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 20px 15px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 1.1em;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        td {
+            padding: 18px 15px;
+            border-bottom: 1px solid #e8f4fd;
+            transition: all 0.3s ease;
+            vertical-align: top;
+        }
+        
+        tr:hover {
+            background-color: #f8f9ff;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .condition-name {
+            font-weight: 700;
+            color: #2c3e50;
+            font-size: 1.1em;
+        }
+        
+        .latin-name {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+        
+        .definition {
+            color: #34495e;
+            line-height: 1.6;
+        }
+        
+        .characteristics {
+            color: #2980b9;
+            font-weight: 500;
+        }
+        
+        .frequency {
+            background: linear-gradient(135deg, #ff7675, #fd79a8);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 20px;
+            display: inline-block;
+            font-size: 0.9em;
+            font-weight: 600;
+            text-align: center;
+            min-width: 80px;
+        }
+        
+        .duration {
+            background: linear-gradient(135deg, #00b894, #00cec9);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 20px;
+            display: inline-block;
+            font-size: 0.9em;
+            font-weight: 600;
+            text-align: center;
+            min-width: 80px;
+        }
+        
+        .note {
+            background: linear-gradient(135deg, #74b9ff, #0984e3);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 20px;
+            font-size: 1em;
+            line-height: 1.6;
+            box-shadow: 0 5px 15px rgba(116, 185, 255, 0.3);
+        }
+        
+        .note h3 {
+            margin: 0 0 10px 0;
+            font-size: 1.2em;
+            font-weight: 600;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+                margin: 10px;
+            }
+            
+            h1 {
+                font-size: 1.8em;
+            }
+            
+            th, td {
+                padding: 12px 10px;
+                font-size: 0.9em;
+            }
+            
+            .frequency, .duration {
+                padding: 6px 10px;
+                font-size: 0.8em;
+                min-width: 70px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🩸 Gangguan Menstruasi Abnormal</h1>
+        
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Kondisi</th>
+                        <th>Definisi</th>
+                        <th>Karakteristik Utama</th>
+                        <th>Frekuensi/Durasi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="condition-name">Menorrhagia</div>
+                            <div class="latin-name">(Pendarahan Berat)</div>
+                        </td>
+                        <td class="definition">
+                            Pendarahan menstruasi yang abnormal berat dan/atau berkepanjangan yang terjadi pada interval reguler
+                        </td>
+                        <td class="characteristics">
+                            • Volume darah > 80ml per siklus<br>
+                            • Mengganti pembalut setiap 1-2 jam<br>
+                            • Pembekuan darah besar<br>
+                            • Aktivitas terganggu
+                        </td>
+                        <td>
+                            <div class="duration">> 7 hari</div>
+                            <div style="margin-top: 8px;">
+                                <div class="frequency">Siklus Normal</div>
+                            </div>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            <div class="condition-name">Brachymenorrhea</div>
+                            <div class="latin-name">(Pendarahan Singkat)</div>
+                        </td>
+                        <td class="definition">
+                            Pendarahan menstruasi yang berlangsung sangat singkat, biasanya kurang dari normal
+                        </td>
+                        <td class="characteristics">
+                            • Volume darah minimal<br>
+                            • Hanya bercak ringan<br>
+                            • Warna darah lebih terang<br>
+                            • Tidak memerlukan pembalut tebal
+                        </td>
+                        <td>
+                            <div class="duration">< 2 hari</div>
+                            <div style="margin-top: 8px;">
+                                <div class="frequency">Siklus Normal</div>
+                            </div>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            <div class="condition-name">Polimenore</div>
+                            <div class="latin-name">(Siklus Sering)</div>
+                        </td>
+                        <td class="definition">
+                            Siklus menstruasi yang terjadi terlalu sering dengan interval yang sangat pendek
+                        </td>
+                        <td class="characteristics">
+                            • Menstruasi 2-3x dalam sebulan<br>
+                            • Interval antar siklus pendek<br>
+                            • Dapat menyebabkan anemia<br>
+                            • Gangguan aktivitas sehari-hari
+                        </td>
+                        <td>
+                            <div class="frequency">< 21 hari</div>
+                            <div style="margin-top: 8px;">
+                                <div class="duration">Durasi Bervariasi</div>
+                            </div>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            <div class="condition-name">Oligomenore</div>
+                            <div class="latin-name">(Siklus Jarang)</div>
+                        </td>
+                        <td class="definition">
+                            Siklus menstruasi yang terjadi dengan interval yang sangat panjang atau jarang
+                        </td>
+                        <td class="characteristics">
+                            • Menstruasi jarang terjadi<br>
+                            • Interval lebih dari 35 hari<br>
+                            • Dapat terkait dengan PCOS<br>
+                            • Ovulasi tidak teratur
+                        </td>
+                        <td>
+                            <div class="frequency">> 35 hari</div>
+                            <div style="margin-top: 8px;">
+                                <div class="duration">Durasi Bervariasi</div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="note">
+            <h3>📋 Catatan Penting:</h3>
+            <p><strong>Siklus menstruasi normal:</strong> 21-35 hari dengan durasi 3-7 hari. Jika mengalami salah satu kondisi di atas secara berkelanjutan, sangat disarankan untuk berkonsultasi dengan dokter kandungan untuk evaluasi dan penanganan yang tepat. Gangguan menstruasi dapat menjadi indikator adanya masalah kesehatan yang memerlukan perhatian medis.</p>
+        </div>
+    </div>
+</body>
+</html>
