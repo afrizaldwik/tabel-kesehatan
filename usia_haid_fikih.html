@@ -268,10 +268,16 @@
             color: #ecf0f1;
         }
         
-        .back-button {
+        .navigation-buttons {
             position: fixed;
             top: 30px;
             left: 30px;
+            display: flex;
+            gap: 15px;
+            z-index: 1000;
+        }
+        
+        .nav-button {
             background: linear-gradient(135deg, #2c5530, #1e3c72);
             color: white;
             padding: 15px 25px;
@@ -282,12 +288,19 @@
             cursor: pointer;
             box-shadow: 0 10px 30px rgba(44, 85, 48, 0.3);
             transition: all 0.3s ease;
-            z-index: 1000;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
         }
         
-        .back-button:hover {
+        .nav-button:hover {
             transform: translateY(-3px);
             box-shadow: 0 15px 40px rgba(44, 85, 48, 0.4);
+        }
+        
+        .nav-button:active {
+            transform: translateY(-1px);
         }
         
         @media (max-width: 768px) {
