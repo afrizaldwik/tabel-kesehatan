@@ -523,40 +523,79 @@
         </div>
     </div>
 
-     <script>
+    <script>
+        function showNotification(message) {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+
         function goBack() {
-            // Coba berbagai cara untuk kembali
-            if (document.referrer && document.referrer !== window.location.href) {
-                // Jika ada halaman sebelumnya
-                window.history.back();
-            } else if (window.opener) {
-                // Jika dibuka dari window lain
-                window.close();
-            } else {
-                // Alternatif terakhir - redirect ke halaman utama
-                const confirmed = confirm('Apakah Anda ingin kembali ke halaman utama?');
-                if (confirmed) {
-                    // Ganti dengan nama file halaman utama Anda
-                    window.location.href = 'main_landing_page.html';
+            try {
+                // Coba gunakan history.back() terlebih dahulu
+                if (window.history.length > 1) {
+                    window.history.back();
+                    showNotification('Kembali ke halaman sebelumnya');
+                } else {
+                    // Jika tidak ada history, redirect ke halaman utama
+                    goHome();
                 }
+            } catch (error) {
+                console.log('History back failed, redirecting to home');
+                goHome();
             }
         }
 
-        // Tambahkan shortcut keyboard untuk kembali
+        function goHome() {
+            try {
+                // Coba buka halaman utama
+                if (window.opener) {
+                    // Jika dibuka dari window lain, tutup window ini
+                    window.close();
+                } else {
+                    // Redirect ke halaman utama
+                    window.location.href = 'main_landing_page.html';
+                }
+                showNotification('Menuju halaman beranda');
+            } catch (error) {
+                // Fallback jika gagal
+                showNotification('Gunakan tombol back browser atau tutup tab ini');
+                console.log('Navigation failed:', error);
+            }
+        }
+
+        // Handle browser back button
+        window.addEventListener('popstate', function(event) {
+            showNotification('Navigasi dengan tombol browser');
+        });
+
+        // Keyboard shortcuts
         document.addEventListener('keydown', function(event) {
-            // Alt + Left Arrow atau Backspace untuk kembali
-            if ((event.altKey && event.key === 'ArrowLeft') || event.key === 'Backspace') {
+            // Alt + B untuk kembali
+            if (event.altKey && event.key === 'b') {
                 event.preventDefault();
+                goBack();
+            }
+            // Alt + H untuk home
+            if (event.altKey && event.key === 'h') {
+                event.preventDefault();
+                goHome();
+            }
+            // Escape untuk kembali
+            if (event.key === 'Escape') {
                 goBack();
             }
         });
 
-        // Tambahkan efek visual ketika tombol diklik
-        document.querySelector('.back-button').addEventListener('click', function() {
-            this.style.transform = 'translateY(-1px) scale(0.98)';
+        // Show welcome message
+        window.addEventListener('load', function() {
             setTimeout(() => {
-                this.style.transform = '';
-            }, 150);
+                showNotification('Gunakan tombol navigasi atau Alt+B untuk kembali');
+            }, 1000);
         });
     </script>
 </body>
