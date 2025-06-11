@@ -473,5 +473,42 @@
             </p>
         </div>
     </div>
+
+     <script>
+        function goBack() {
+            // Coba berbagai cara untuk kembali
+            if (document.referrer && document.referrer !== window.location.href) {
+                // Jika ada halaman sebelumnya
+                window.history.back();
+            } else if (window.opener) {
+                // Jika dibuka dari window lain
+                window.close();
+            } else {
+                // Alternatif terakhir - redirect ke halaman utama
+                const confirmed = confirm('Apakah Anda ingin kembali ke halaman utama?');
+                if (confirmed) {
+                    // Ganti dengan nama file halaman utama Anda
+                    window.location.href = 'main_landing_page.html';
+                }
+            }
+        }
+
+        // Tambahkan shortcut keyboard untuk kembali
+        document.addEventListener('keydown', function(event) {
+            // Alt + Left Arrow atau Backspace untuk kembali
+            if ((event.altKey && event.key === 'ArrowLeft') || event.key === 'Backspace') {
+                event.preventDefault();
+                goBack();
+            }
+        });
+
+        // Tambahkan efek visual ketika tombol diklik
+        document.querySelector('.back-button').addEventListener('click', function() {
+            this.style.transform = 'translateY(-1px) scale(0.98)';
+            setTimeout(() => {
+                this.style.transform = '';
+            }, 150);
+        });
+    </script>
 </body>
 </html>
