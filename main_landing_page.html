@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fikih Kesehatan Wanita</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #667eea 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 2s infinite alternate;
+        }
+        
+        @keyframes twinkle {
+            0% { opacity: 0.3; transform: scale(1); }
+            100% { opacity: 1; transform: scale(1.2); }
+        }
+        
+        .container {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+            animation: fadeInDown 1s ease-out;
+        }
+        
+        .main-title {
+            font-size: 3.5em;
+            color: white;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+        
+        .subtitle {
+            font-size: 1.3em;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+        }
+        
+        .author {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            display: inline-block;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            font-weight: 500;
+            font-size: 1.1em;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+        
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+        
+        .content-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 25px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.4s ease;
+            animation: fadeInUp 1s ease-out;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .content-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .content-card:hover::before {
+            left: 100%;
+        }
+        
+        .content-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.15);
+        }
+        
+        .card-icon {
+            font-size: 4em;
+            text-align: center;
+            margin-bottom: 25px;
+            filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.1));
+        }
+        
+        .card-title {
+            font-size: 1.8em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: 700;
+        }
+        
+        .card-description {
+            color: #576574;
+            font-size: 1.1em;
+            line-height: 1.7;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .card-button {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            width: 100%;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .card-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .footer-text {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1em;
+            line-height: 1.6;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 2.5em;
+            }
+            
+            .content-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .content-card {
+                padding: 30px;
+            }
+            
+            .container {
+                padding: 15px;
+            }
+        }
+        
+        /* Floating animation for cards */
+        .content-card:nth-child(1) {
+            animation-delay: 0.2s;
+        }
+        
+        .content-card:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+        
+        /* Pulse effect for buttons */
+        @keyframes pulse {
+            0% { box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3); }
+            50% { box-shadow: 0 15px 40px rgba(102, 126, 234, 0.5); }
+            100% { box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3); }
+        }
+        
+        .card-button {
+            animation: pulse 2s infinite;
+        }
+        
+        /* EDIT SECTION - Tambahkan kartu baru di sini */
+        /* 
+        PETUNJUK PENGEDITAN:
+        1. Untuk menambahkan halaman baru, copy blok .content-card di bawah ini
+        2. Ganti isi dari:
+           - .card-icon (emoji atau ikon)
+           - .card-title (judul halaman)
+           - .card-description (deskripsi singkat)
+           - onclick="openPage('nama-file.html')" (nama file HTML)
+        
+        Contoh menambahkan kartu baru:
+        <div class="content-card" onclick="openPage('halaman-baru.html')">
+            <div class="card-icon">🆕</div>
+            <h3 class="card-title">Judul Halaman Baru</h3>
+            <p class="card-description">Deskripsi singkat tentang halaman baru ini.</p>
+            <button class="card-button">Buka Halaman</button>
+        </div>
+        */
+    </style>
+</head>
+<body>
+    <div class="stars"></div>
+    
+    <div class="container">
+        <div class="header">
+            <h1 class="main-title">🌸 Fikih Kesehatan Wanita</h1>
+            <p class="subtitle">Panduan Komprehensif Kesehatan Reproduksi Wanita dalam Perspektif Islam</p>
+            <div class="author">
+                👨‍🎓 Abu Hanif | Afrizal Dwi Kurniawan
+            </div>
+        </div>
+        
+        <div class="content-grid">
+            <!-- KARTU 1 - Tabel Gangguan Menstruasi -->
+            <div class="content-card" onclick="openPage('tabel-gangguan-menstruasi.html')">
+                <div class="card-icon">📊</div>
+                <h3 class="card-title">Tabel Gangguan Menstruasi</h3>
+                <p class="card-description">
+                    Panduan lengkap mengenai berbagai jenis gangguan menstruasi seperti menorrhagia, 
+                    brachymenorrhea, polimenore, dan oligomenore dengan penjelasan yang mudah dipahami.
+                </p>
+                <button class="card-button">Lihat Tabel</button>
+            </div>
+            
+            <!-- KARTU 2 - Panduan Siklus Haid -->
+            <div class="content-card" onclick="openPage('panduan-siklus-haid.html')">
+                <div class="card-icon">🌙</div>
+                <h3 class="card-title">Memahami Siklus Haid</h3>
+                <p class="card-description">
+                    Penjelasan sederhana dan komprehensif tentang siklus menstruasi untuk orang awam, 
+                    termasuk fase-fase, gejala, dan tips menjalani siklus dengan nyaman.
+                </p>
+                <button class="card-button">Pelajari Siklus</button>
+            </div>
+            
+            <!-- TAMBAHKAN KARTU BARU DI SINI -->
+            <!-- Contoh template kartu baru (hapus komentar untuk menggunakan):
+            <div class="content-card" onclick="openPage('nama-file-baru.html')">
+                <div class="card-icon">🆕</div>
+                <h3 class="card-title">Judul Halaman Baru</h3>
+                <p class="card-description">
+                    Deskripsi singkat tentang konten halaman baru yang akan ditambahkan.
+                </p>
+                <button class="card-button">Buka Halaman</button>
+            </div>
+            -->
+        </div>
+        
+        <div class="footer">
+            <p class="footer-text">
+                💡 <strong>Catatan Penting:</strong> Semua informasi dalam website ini bersifat edukatif dan tidak menggantikan konsultasi medis profesional. 
+                Selalu konsultasikan dengan dokter atau tenaga kesehatan yang kompeten untuk diagnosis dan pengobatan yang tepat.
+            </p>
+        </div>
+    </div>
+    
+    <script>
+        // Fungsi untuk membuka halaman
+        function openPage(filename) {
+            // Simulasi membuka halaman baru
+            alert(`Membuka halaman: ${filename}\n\nCatatan: Untuk implementasi nyata, ganti alert ini dengan:\nwindow.open('${filename}', '_blank');`);
+            
+            // Uncomment baris di bawah untuk implementasi nyata:
+            // window.open(filename, '_blank');
+        }
+        
+        // Membuat efek bintang
+        function createStars() {
+            const starsContainer = document.querySelector('.stars');
+            const numberOfStars = 50;
+            
+            for (let i = 0; i < numberOfStars; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.width = star.style.height = Math.random() * 3 + 1 + 'px';
+                star.style.animationDelay = Math.random() * 2 + 's';
+                starsContainer.appendChild(star);
+            }
+        }
+        
+        // Inisialisasi efek visual
+        document.addEventListener('DOMContentLoaded', function() {
+            createStars();
+            
+            // Tambahkan efek hover pada kartu
+            const cards = document.querySelectorAll('.content-card');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.background = 'rgba(255, 255, 255, 0.98)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.background = 'rgba(255, 255, 255, 0.95)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
