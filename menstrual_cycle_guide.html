@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memahami Siklus Haid</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 25px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(15px);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .intro {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 25px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+        
+        .phase-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .phase {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border-left: 6px solid;
+        }
+        
+        .phase:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .phase-1 { border-left-color: #e74c3c; }
+        .phase-2 { border-left-color: #f39c12; }
+        .phase-3 { border-left-color: #2ecc71; }
+        .phase-4 { border-left-color: #3498db; }
+        
+        .phase h3 {
+            color: #2c3e50;
+            font-size: 1.4em;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .phase-icon {
+            font-size: 2.5em;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        
+        .phase-days {
+            background: rgba(52, 73, 94, 0.1);
+            color: #2c3e50;
+            padding: 8px 15px;
+            border-radius: 25px;
+            display: inline-block;
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-size: 0.9em;
+        }
+        
+        .symptoms {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 15px;
+            margin-top: 15px;
+        }
+        
+        .symptoms h4 {
+            color: #495057;
+            margin: 0 0 10px 0;
+            font-size: 1.1em;
+        }
+        
+        .symptoms ul {
+            margin: 0;
+            padding-left: 20px;
+            color: #6c757d;
+        }
+        
+        .tips-section {
+            background: linear-gradient(135deg, #56ab2f, #a8e6cf);
+            color: white;
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+            box-shadow: 0 15px 35px rgba(86, 171, 47, 0.3);
+        }
+        
+        .tips-section h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 1.8em;
+            font-weight: 600;
+        }
+        
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .tip-card {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .tip-card h4 {
+            margin: 0 0 10px 0;
+            font-size: 1.2em;
+            font-weight: 600;
+        }
+        
+        .cycle-visual {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+        
+        .cycle-line {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 20px 0;
+            padding: 20px;
+            background: linear-gradient(90deg, #e74c3c, #f39c12, #2ecc71, #3498db);
+            border-radius: 50px;
+            color: white;
+            font-weight: 600;
+        }
+        
+        .day-marker {
+            background: rgba(255, 255, 255, 0.3);
+            padding: 10px 15px;
+            border-radius: 25px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .important-note {
+            background: #fff3cd;
+            border: 2px solid #ffeaa7;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 30px 0;
+            color: #856404;
+        }
+        
+        .important-note h3 {
+            color: #856404;
+            margin: 0 0 15px 0;
+            font-size: 1.3em;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 25px;
+                margin: 10px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            .phase-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .cycle-line {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌸 Memahami Siklus Haid</h1>
+        
+        <div class="intro">
+            <p><strong>Siklus haid adalah proses alami tubuh wanita yang terjadi setiap bulan untuk mempersiapkan kemungkinan kehamilan.</strong> Seperti siklus bulan yang berulang, tubuh wanita juga memiliki ritme bulanan yang sangat teratur dan menakjubkan!</p>
+        </div>
+        
+        <div class="cycle-visual">
+            <h2>📊 Gambaran Siklus 28 Hari</h2>
+            <div class="cycle-line">
+                <div class="day-marker">Hari 1-7<br>Haid</div>
+                <div class="day-marker">Hari 8-13<br>Persiapan</div>
+                <div class="day-marker">Hari 14<br>Ovulasi</div>
+                <div class="day-marker">Hari 15-28<br>Menunggu</div>
+            </div>
+            <p><em>Siklus normal: 21-35 hari | Durasi haid: 3-7 hari</em></p>
+        </div>
+        
+        <h2 style="text-align: center; color: #2c3e50; font-size: 1.8em; margin: 40px 0 30px 0;">4 Fase Siklus Haid</h2>
+        
+        <div class="phase-container">
+            <div class="phase phase-1">
+                <div class="phase-icon">🩸</div>
+                <h3>Fase 1: Menstruasi</h3>
+                <div class="phase-days">Hari 1-7</div>
+                <p><strong>Apa yang terjadi:</strong> Lapisan dalam rahim (endometrium) yang sudah menebal luruh keluar melalui vagina berupa darah haid.</p>
+                <p><strong>Analogi sederhana:</strong> Seperti kamar yang sudah dihias untuk tamu, tapi tamunya tidak datang, jadi dekorasinya dibongkar untuk persiapan bulan depan.</p>
+                
+                <div class="symptoms">
+                    <h4>Yang Mungkin Dirasakan:</h4>
+                    <ul>
+                        <li>Kram perut bagian bawah</li>
+                        <li>Nyeri punggung</li>
+                        <li>Mood yang berubah-ubah</li>
+                        <li>Merasa lebih lelah</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="phase phase-2">
+                <div class="phase-icon">🌱</div>
+                <h3>Fase 2: Folikuler</h3>
+                <div class="phase-days">Hari 1-13</div>
+                <p><strong>Apa yang terjadi:</strong> Otak mengirim sinyal ke ovarium untuk mulai mematangkan sel telur. Bersamaan dengan itu, rahim mulai membangun lapisan baru.</p>
+                <p><strong>Analogi sederhana:</strong> Seperti kebun yang mulai ditanami benih baru dan tanah dipupuk untuk pertumbuhan yang optimal.</p>
+                
+                <div class="symptoms">
+                    <h4>Yang Mungkin Dirasakan:</h4>
+                    <ul>
+                        <li>Energi mulai kembali</li>
+                        <li>Mood lebih stabil</li>
+                        <li>Nafsu makan normal</li>
+                        <li>Kulit mulai membaik</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="phase phase-3">
+                <div class="phase-icon">🥚</div>
+                <h3>Fase 3: Ovulasi</h3>
+                <div class="phase-days">Hari 14 (± 2 hari)</div>
+                <p><strong>Apa yang terjadi:</strong> Sel telur yang sudah matang dilepaskan dari ovarium dan siap untuk dibuahi. Ini adalah masa paling subur.</p>
+                <p><strong>Analogi sederhana:</strong> Seperti buah yang sudah matang sempurna dan siap dipetik - ini adalah waktu terbaik untuk pembuahan.</p>
+                
+                <div class="symptoms">
+                    <h4>Yang Mungkin Dirasakan:</h4>
+                    <ul>
+                        <li>Keputihan lebih encer dan licin</li>
+                        <li>Sedikit nyeri di salah satu sisi perut</li>
+                        <li>Suhu tubuh sedikit naik</li>
+                        <li>Libido meningkat</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="phase phase-4">
+                <div class="phase-icon">⏳</div>
+                <h3>Fase 4: Luteal</h3>
+                <div class="phase-days">Hari 15-28</div>
+                <p><strong>Apa yang terjadi:</strong> Sel telur berjalan ke rahim. Jika tidak dibuahi, kadar hormon turun dan tubuh bersiap untuk siklus baru.</p>
+                <p><strong>Analogi sederhana:</strong> Seperti masa penantian - jika tidak ada "tamu" (kehamilan), tubuh bersiap untuk "renovasi" bulan depan.</p>
+                
+                <div class="symptoms">
+                    <h4>Yang Mungkin Dirasakan (PMS):</h4>
+                    <ul>
+                        <li>Payudara terasa kencang</li>
+                        <li>Perut kembung</li>
+                        <li>Mudah marah atau sedih</li>
+                        <li>Ngidam makanan tertentu</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="tips-section">
+            <h2>💡 Tips Menjalani Siklus dengan Nyaman</h2>
+            <div class="tips-grid">
+                <div class="tip-card">
+                    <h4>🗓️ Catat Siklus</h4>
+                    <p>Gunakan aplikasi atau kalender untuk mencatat hari pertama haid. Ini membantu prediksi siklus selanjutnya.</p>
+                </div>
+                
+                <div class="tip-card">
+                    <h4>🥗 Pola Makan Sehat</h4>
+                    <p>Konsumsi makanan kaya zat besi, kalsium, dan vitamin B untuk mengurangi gejala PMS.</p>
+                </div>
+                
+                <div class="tip-card">
+                    <h4>🏃‍♀️ Olahraga Ringan</h4>
+                    <p>Jalan kaki, yoga, atau stretching dapat mengurangi kram dan meningkatkan mood.</p>
+                </div>
+                
+                <div class="tip-card">
+                    <h4>💧 Cukup Minum Air</h4>
+                    <p>Air putih membantu mengurangi kembung dan menjaga tubuh tetap terhidrasi.</p>
+                </div>
+                
+                <div class="tip-card">
+                    <h4>😴 Istirahat Cukup</h4>
+                    <p>Tidur 7-8 jam membantu tubuh memulihkan diri dan mengatur hormon.</p>
+                </div>
+                
+                <div class="tip-card">
+                    <h4>🧘‍♀️ Kelola Stres</h4>
+                    <p>Meditasi, mendengarkan musik, atau hobby favorit dapat membantu mengelola emosi.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="important-note">
+            <h3>⚠️ Kapan Harus ke Dokter?</h3>
+            <p><strong>Segera konsultasi jika mengalami:</strong></p>
+            <ul>
+                <li>Siklus kurang dari 21 hari atau lebih dari 35 hari</li>
+                <li>Haid berlangsung lebih dari 7 hari atau kurang dari 2 hari</li>
+                <li>Pendarahan sangat berat (ganti pembalut setiap jam)</li>
+                <li>Nyeri yang sangat parah dan mengganggu aktivitas</li>
+                <li>Tidak haid selama 3 bulan berturut-turut (tanpa hamil)</li>
+                <li>Pendarahan di luar jadwal haid</li>
+            </ul>
+        </div>
+        
+        <div style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 25px; border-radius: 20px; text-align: center; margin-top: 30px;">
+            <h3>🌟 Ingat!</h3>
+            <p style="font-size: 1.1em; margin: 0;"><strong>Setiap wanita unik!</strong> Siklus yang normal untuk satu orang mungkin berbeda dengan orang lain. Yang terpenting adalah mengenal pola tubuh sendiri dan tidak ragu berkonsultasi dengan dokter jika ada kekhawatiran.</p>
+        </div>
+    </div>
+</body>
+</html>
