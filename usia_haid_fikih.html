@@ -339,6 +339,26 @@
             border-radius: 5px;
             font-weight: 600;
         }
+
+        /* Notification styles */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #00b894, #00cec9);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 184, 148, 0.3);
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+            z-index: 1001;
+            font-weight: 600;
+        }
+        
+        .notification.show {
+            transform: translateX(0);
+        }
     </style>
 </head>
 <body>
