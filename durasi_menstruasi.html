@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Durasi Menstruasi - Perspektif Islam dan Medis</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #667eea 100%);
+            min-height: 100vh;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header h1 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .header .subtitle {
+            color: #576574;
+            font-size: 1.2em;
+            font-style: italic;
+        }
+        
+        .content-section {
+            background: rgba(255, 255, 255, 0.95);
+            margin-bottom: 30px;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        .section-title {
+            color: #667eea;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+        
+        .highlight-title {
+            font-size: 1.3em;
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .opinion-card {
+            background: #f8f9fa;
+            border-left: 5px solid #667eea;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 10px;
+        }
+        
+        .opinion-title {
+            color: #2c3e50;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .medical-support {
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+            box-shadow: 0 10px 30px rgba(40, 167, 69, 0.3);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            text-decoration: none;
+            display: inline-block;
+            margin: 10px 10px 10px 0;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(40, 167, 69, 0.3);
+            text-decoration: none;
+            display: inline-block;
+            margin: 10px 10px 10px 0;
+        }
+        
+        .btn-secondary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(40, 167, 69, 0.4);
+        }
+        
+        .key-points {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .key-points h4 {
+            color: #856404;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+        
+        .key-points ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        .key-points li {
+            padding: 8px 0;
+            border-bottom: 1px solid #ffeaa7;
+        }
+        
+        .key-points li:before {
+            content: "✓";
+            color: #28a745;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #667eea;
+            padding: 12px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .back-button:hover {
+            background: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .content-section {
+                padding: 25px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .back-button {
+                position: relative;
+                top: auto;
+                left: auto;
+                margin-bottom: 20px;
+                display: inline-block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="#" class="back-button" onclick="history.back()">← Kembali</a>
+    
+    <div class="container">
+        <div class="header">
+            <h1>⏰ Durasi Menstruasi</h1>
+            <p class="subtitle">Perspektif Ulama dan Wawasan Medis Modern</p>
+        </div>
+        
+        <div class="content-section">
+            <h2 class="section-title">
+                📚 Perbedaan Pendapat Ulama
+            </h2>
+            <p>
+                Para ulama memiliki pendapat yang beragam mengenai durasi menstruasi, dengan sekitar 6-7 pendapat berbeda 
+                tentang batas minimal dan maksimal periode haid.
+            </p>
+            
+            <div class="opinion-card">
+                <div class="opinion-title">🕐 Pendapat Sebagian Ulama:</div>
+                <p>
+                    Beberapa ulama menetapkan durasi minimal tertentu (misalnya 3 hari) dan maksimal 
+                    (misalnya 10 atau 15 hari) untuk periode menstruasi.
+                </p>
+            </div>
+        </div>
+        
+        <div class="content-section">
+            <h2 class="section-title">
+                ⭐ Pandangan Terkuat: Tidak Ada Batasan Tetap
+            </h2>
+            
+            <div class="highlight-box">
+                <div class="highlight-title">
+                    💡 Pendapat yang Paling Akurat
+                </div>
+                <p>
+                    Menurut Syaikhul Islam Ibnu Taimiyah dan Syekh Utsaimin, <strong>tidak ada batasan durasi 
+                    minimal maupun maksimal untuk haid</strong>. Yang menentukan adalah keberadaan darah 
+                    dengan karakteristik darah haid yang dikenal.
+                </p>
+            </div>
+            
+            <div class="key-points">
+                <h4>🔍 Karakteristik Darah Haid:</h4>
+                <ul>
+                    <li>Warna khas darah menstruasi</li>
+                    <li>Bau yang dapat dikenali</li>
+                    <li>Konsistensi yang tepat</li>
+                    <li>Gejala penyerta seperti nyeri</li>
+                </ul>
+            </div>
+            
+            <p>
+                <strong>Contoh Praktis:</strong> Jika darah dengan karakteristik haid hanya berlangsung 2 hari, 
+                maka itulah periode haidnya. Begitu juga jika berlangsung 20 hari, maka selama durasi tersebut 
+                wanita dianggap dalam keadaan haid.
+            </p>
+        </div>
+        
+        <div class="content-section">
+            <h2 class="section-title">
+                🔬 Dukungan Ilmu Kedokteran Modern
+            </h2>
+            
+            <div class="medical-support">
+                <div class="highlight-title">
+                    🩺 "Ilmu kedokteran mendukung dalil ini"
+                </div>
+                <p>
+                    Penelitian medis modern membuktikan bahwa siklus menstruasi sangat bervariasi antar wanita. 
+                    Tidak ada "durasi standar" yang berlaku untuk semua orang.
+                </p>
+            </div>
+            
+            <p>
+                Keselarasan antara fikih Islam dan ilmu kedokteran ini menunjukkan bahwa:
+            </p>
+            
+            <div class="key-points">
+                <h4>✨ Keunggulan Perspektif Islam:</h4>
+                <ul>
+                    <li>Hukum Islam fleksibel dan mengakomodasi keragaman fisiologi manusia</li>
+                    <li>Tidak memaksakan batasan yang sewenang-wenang</li>
+                    <li>Selaras dengan observasi medis modern tentang variabilitas menstruasi</li>
+                    <li>Menunjukkan kebijaksanaan dalam ajaran Islam</li>
+                </ul>
+            </div>
+            
+            <div style="text-align: center; margin-top: 30px;">
+                <a href="menstrual_disorders_table.html" class="btn-secondary">
+                    📊 Lihat Tabel Gangguan Menstruasi
+                </a>
+                <a href="#" class="btn-primary" onclick="history.back()">
+                    🏠 Kembali ke Beranda
+                </a>
+            </div>
+        </div>
+        
+        <div class="content-section">
+            <h2 class="section-title">
+                🎯 Kesimpulan Penting
+            </h2>
+            
+            <div class="highlight-box">
+                <p>
+                    <strong>Prinsip Utama:</strong> Islam mengakui keragaman alami dalam fisiologi wanita. 
+                    Pendekatan yang fleksibel ini memungkinkan setiap wanita memahami tubuhnya sendiri 
+                    tanpa terikat pada batasan yang kaku.
+                </p>
+            </div>
+            
+            <div class="opinion-card">
+                <div class="opinion-title">🤝 Keselarasan Agama dan Sains:</div>
+                <p>
+                    Kemajuan ilmiah tidak bertentangan dengan ajaran Islam, melainkan memperkuat 
+                    kebijaksanaan yang sudah tertanam dalam hukum syariat sejak berabad-abad lalu.
+                </p>
+            </div>
+            
+            <div style="background: #e3f2fd; border-left: 5px solid #2196f3; padding: 20px; border-radius: 10px; margin-top: 20px;">
+                <p>
+                    <strong>💡 Catatan:</strong> Informasi ini bersifat edukatif. Untuk kondisi medis yang 
+                    tidak biasa atau mengkhawatirkan, selalu konsultasikan dengan tenaga kesehatan profesional.
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
