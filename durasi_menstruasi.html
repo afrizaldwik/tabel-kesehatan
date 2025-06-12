@@ -200,6 +200,14 @@
             transform: translateY(-2px);
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
         }
+
+        .navigation-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
         
         @keyframes fadeInUp {
             from {
@@ -232,11 +240,104 @@
                 margin-bottom: 20px;
                 display: inline-block;
             }
+
+            .navigation-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn-primary, .btn-secondary {
+                width: 100%;
+                max-width: 300px;
+                text-align: center;
+            }
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 30px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            animation: modalSlideIn 0.3s ease-out;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal h3 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+
+        .modal p {
+            color: #576574;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .modal-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .modal-btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .modal-btn-primary {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .modal-btn-secondary {
+            background: #f8f9fa;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+
+        .modal-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
     </style>
 </head>
 <body>
-    <a href="#" class="back-button" onclick="history.back()">← Kembali</a>
+     <button class="back-button" onclick="goBack()">← Kembali</button>
     
     <div class="container">
         <div class="header">
@@ -324,13 +425,13 @@
                 </ul>
             </div>
             
-            <div style="text-align: center; margin-top: 30px;">
-                <a href="menstrual_disorders_table.html" class="btn-secondary">
-                    📊 Lihat Tabel Gangguan Menstruasi
-                </a>
-                <a href="#" class="btn-primary" onclick="history.back()">
+            <div class="navigation-buttons">
+                <button onclick="showTableInfo()" class="btn-secondary">
+                    📊 Info Gangguan Menstruasi
+                </button>
+                <button onclick="goToHome()" class="btn-primary">
                     🏠 Kembali ke Beranda
-                </a>
+                </button>
             </div>
         </div>
         
@@ -363,5 +464,116 @@
             </div>
         </div>
     </div>
+
+      <!-- Modal untuk informasi tabel -->
+    <div id="tableModal" class="modal">
+        <div class="modal-content">
+            <h3>📊 Informasi Gangguan Menstruasi</h3>
+            <p>Tabel gangguan menstruasi berisi informasi medis tentang berbagai kondisi yang dapat mempengaruhi siklus menstruasi seperti menorrhagia, Brachymenorrhea, Polimenore, dan Oligomenore.</p>
+            <p>Apakah Anda ingin melanjutkan ke halaman dengan informasi medis tersebut?</p>
+            <div class="modal-buttons">
+                <button onclick="openTablePage()" class="modal-btn modal-btn-primary">Ya, Lanjutkan</button>
+                <button onclick="closeModal()" class="modal-btn modal-btn-secondary">Tidak, Kembali</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal untuk kembali ke beranda -->
+    <div id="homeModal" class="modal">
+        <div class="modal-content">
+            <h3>🏠 Kembali ke Beranda</h3>
+            <p>Anda akan meninggalkan halaman ini dan kembali ke halaman utama. Apakah Anda yakin?</p>
+            <div class="modal-buttons">
+                <button onclick="confirmGoHome()" class="modal-btn modal-btn-primary">Ya, Kembali</button>
+                <button onclick="closeModal()" class="modal-btn modal-btn-secondary">Batal</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Fungsi untuk tombol kembali
+        function goBack() {
+            if (window.history.length > 1) {
+                window.history.back();
+            } else {
+                // Jika tidak ada history, kembali ke halaman utama atau tutup
+                window.close();
+            }
+        }
+
+        // Fungsi untuk menampilkan modal tabel
+        function showTableInfo() {
+            document.getElementById('tableModal').style.display = 'block';
+        }
+
+        // Fungsi untuk menampilkan modal home
+        function goToHome() {
+            document.getElementById('homeModal').style.display = 'block';
+        }
+
+        // Fungsi untuk menutup modal
+        function closeModal() {
+            document.getElementById('tableModal').style.display = 'none';
+            document.getElementById('homeModal').style.display = 'none';
+        }
+
+        // Fungsi untuk membuka halaman tabel (DIPERBAIKI)
+        function openTablePage() {
+            try {
+                // Langsung navigasi ke file menstrual_disorders_table.html
+                window.location.href = 'menstrual_disorders_table.html';
+            } catch (error) {
+                // Jika ada error, tampilkan pesan dan tutup modal
+                alert('Tidak dapat membuka halaman tabel. Silakan coba lagi.');
+                console.error('Error navigating to table page:', error);
+            }
+            closeModal();
+        }
+
+        // Fungsi untuk konfirmasi kembali ke home
+        function confirmGoHome() {
+            // Mencoba kembali ke halaman sebelumnya atau redirect ke halaman utama
+            if (document.referrer && !document.referrer.includes(window.location.hostname)) {
+                // Jika datang dari domain lain, buka halaman baru
+                window.location.href = '/';
+            } else if (window.history.length > 1) {
+                // Jika ada history, kembali ke halaman sebelumnya
+                window.history.back();
+            } else {
+                // Fallback: reload halaman atau redirect ke root
+                window.location.href = '/';
+            }
+            closeModal();
+        }
+
+        // Menutup modal saat mengklik di luar modal
+        window.onclick = function(event) {
+            const tableModal = document.getElementById('tableModal');
+            const homeModal = document.getElementById('homeModal');
+            
+            if (event.target === tableModal) {
+                tableModal.style.display = 'none';
+            }
+            if (event.target === homeModal) {
+                homeModal.style.display = 'none';
+            }
+        }
+
+        // Keyboard navigation untuk modal
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+
+        // Tambahkan animasi saat halaman dimuat
+        window.addEventListener('load', function() {
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.5s ease-in';
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+    </script>
 </body>
 </html>
