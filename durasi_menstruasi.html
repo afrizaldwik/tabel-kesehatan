@@ -493,11 +493,18 @@
     <script>
         // Fungsi untuk tombol kembali
         function goBack() {
-            if (window.history.length > 1) {
-                window.history.back();
-            } else {
-                // Jika tidak ada history, kembali ke halaman utama atau tutup
-                window.close();
+            try {
+                // Coba gunakan history.back() terlebih dahulu
+                if (window.history.length > 1) {
+                    window.history.back();
+                    showNotification('Kembali ke halaman sebelumnya');
+                } else {
+                    // Jika tidak ada history, redirect ke halaman utama
+                    goHome();
+                }
+            } catch (error) {
+                console.log('History back failed, redirecting to home');
+                goHome();
             }
         }
 
@@ -532,18 +539,21 @@
 
         // Fungsi untuk konfirmasi kembali ke home
         function confirmGoHome() {
-            // Mencoba kembali ke halaman sebelumnya atau redirect ke halaman utama
-            if (document.referrer && !document.referrer.includes(window.location.hostname)) {
-                // Jika datang dari domain lain, buka halaman baru
-                window.location.href = '/';
-            } else if (window.history.length > 1) {
-                // Jika ada history, kembali ke halaman sebelumnya
-                window.history.back();
-            } else {
-                // Fallback: reload halaman atau redirect ke root
-                window.location.href = '/';
+            try {
+                // Coba buka halaman utama
+                if (window.opener) {
+                    // Jika dibuka dari window lain, tutup window ini
+                    window.close();
+                } else {
+                    // Redirect ke halaman utama
+                    window.location.href = 'main_landing_page.html';
+                }
+                showNotification('Menuju halaman beranda');
+            } catch (error) {
+                // Fallback jika gagal
+                showNotification('Gunakan tombol back browser atau tutup tab ini');
+                console.log('Navigation failed:', error);
             }
-            closeModal();
         }
 
         // Menutup modal saat mengklik di luar modal
