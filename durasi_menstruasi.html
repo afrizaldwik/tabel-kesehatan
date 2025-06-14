@@ -180,28 +180,42 @@
             margin-right: 10px;
         }
         
-        .back-button {
+        .navigation-buttons {
             position: fixed;
-            top: 20px;
-            left: 20px;
-            background: rgba(255, 255, 255, 0.9);
-            color: #667eea;
-            padding: 12px 20px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
+            top: 30px;
+            left: 30px;
+            display: flex;
+            gap: 15px;
             z-index: 1000;
         }
         
-        .back-button:hover {
-            background: white;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        .nav-button {
+            background: linear-gradient(135deg, #2c5530, #1e3c72);
+            color: white;
+            padding: 15px 25px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(44, 85, 48, 0.3);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .nav-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(44, 85, 48, 0.4);
+        }
+        
+        .nav-button:active {
+            transform: translateY(-1px);
         }
 
-        .navigation-buttons {
+        .bottom-navigation-buttons {
             display: flex;
             justify-content: center;
             gap: 15px;
@@ -233,15 +247,19 @@
                 font-size: 2em;
             }
             
-            .back-button {
-                position: relative;
-                top: auto;
-                left: auto;
-                margin-bottom: 20px;
-                display: inline-block;
+            .navigation-buttons {
+                top: 20px;
+                left: 20px;
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .nav-button {
+                padding: 12px 20px;
+                font-size: 1em;
             }
 
-            .navigation-buttons {
+            .bottom-navigation-buttons {
                 flex-direction: column;
                 align-items: center;
             }
@@ -334,11 +352,39 @@
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
+
+         /* Notification styles */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #00b894, #00cec9);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 184, 148, 0.3);
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+            z-index: 1001;
+            font-weight: 600;
+        }
+        
+        .notification.show {
+            transform: translateX(0);
+        }
     </style>
 </head>
 <body>
-     <button class="back-button" onclick="goBack()">← Kembali</button>
+    <div class="navigation-buttons">
+        <button class="nav-button" onclick="goBack()">
+            ← Kembali
+        </button>
+    </div>
     
+    <div id="notification" class="notification">
+        Navigasi berhasil!
+    </div>
+
     <div class="container">
         <div class="header">
             <h1>⏰ Durasi Menstruasi</h1>
@@ -425,11 +471,11 @@
                 </ul>
             </div>
             
-            <div class="navigation-buttons">
+            <div class="bottom-navigation-buttons">
                 <button onclick="showTableInfo()" class="btn-secondary">
                     📊 Info Gangguan Menstruasi
                 </button>
-                <button onclick="goToHome()" class="btn-primary">
+                <button onclick="goHome()" class="btn-primary">
                     🏠 Kembali ke Beranda
                 </button>
             </div>
@@ -465,8 +511,7 @@
         </div>
     </div>
 
-      <!-- Modal untuk informasi tabel -->
-    <div id="tableModal" class="modal">
+      <div id="tableModal" class="modal">
         <div class="modal-content">
             <h3>📊 Informasi Gangguan Menstruasi</h3>
             <p>Tabel gangguan menstruasi berisi informasi medis tentang berbagai kondisi yang dapat mempengaruhi siklus menstruasi seperti menorrhagia, Brachymenorrhea, Polimenore, dan Oligomenore.</p>
@@ -478,19 +523,17 @@
         </div>
     </div>
 
-    <!-- Modal untuk kembali ke beranda -->
-    <div id="homeModal" class="modal">
-        <div class="modal-content">
-            <h3>🏠 Kembali ke Beranda</h3>
-            <p>Anda akan meninggalkan halaman ini dan kembali ke halaman utama. Apakah Anda yakin?</p>
-            <div class="modal-buttons">
-                <button onclick="confirmGoHome()" class="modal-btn modal-btn-primary">Ya, Kembali</button>
-                <button onclick="closeModal()" class="modal-btn modal-btn-secondary">Batal</button>
-            </div>
-        </div>
-    </div>
-
     <script>
+        function showNotification(message) {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+
         // Fungsi untuk tombol kembali
         function goBack() {
             try {
@@ -508,37 +551,7 @@
             }
         }
 
-        // Fungsi untuk menampilkan modal tabel
-        function showTableInfo() {
-            document.getElementById('tableModal').style.display = 'block';
-        }
-
-        // Fungsi untuk menampilkan modal home
-        function goToHome() {
-            document.getElementById('homeModal').style.display = 'block';
-        }
-
-        // Fungsi untuk menutup modal
-        function closeModal() {
-            document.getElementById('tableModal').style.display = 'none';
-            document.getElementById('homeModal').style.display = 'none';
-        }
-
-        // Fungsi untuk membuka halaman tabel (DIPERBAIKI)
-        function openTablePage() {
-            try {
-                // Langsung navigasi ke file menstrual_disorders_table.html
-                window.location.href = 'menstrual_disorders_table.html';
-            } catch (error) {
-                // Jika ada error, tampilkan pesan dan tutup modal
-                alert('Tidak dapat membuka halaman tabel. Silakan coba lagi.');
-                console.error('Error navigating to table page:', error);
-            }
-            closeModal();
-        }
-
-        // Fungsi untuk konfirmasi kembali ke home
-        function confirmGoHome() {
+        function goHome() {
             try {
                 // Coba buka halaman utama
                 if (window.opener) {
@@ -556,23 +569,58 @@
             }
         }
 
+        // Fungsi untuk menampilkan modal tabel
+        function showTableInfo() {
+            document.getElementById('tableModal').style.display = 'block';
+        }
+
+        // Fungsi untuk menutup modal
+        function closeModal() {
+            document.getElementById('tableModal').style.display = 'none';
+        }
+
+        // Fungsi untuk membuka halaman tabel (DIPERBAIKI)
+        function openTablePage() {
+            try {
+                // Langsung navigasi ke file menstrual_disorders_table.html
+                window.location.href = 'menstrual_disorders_table.html';
+            } catch (error) {
+                // Jika ada error, tampilkan pesan dan tutup modal
+                alert('Tidak dapat membuka halaman tabel. Silakan coba lagi.');
+                console.error('Error navigating to table page:', error);
+            }
+            closeModal();
+        }
+
         // Menutup modal saat mengklik di luar modal
         window.onclick = function(event) {
             const tableModal = document.getElementById('tableModal');
-            const homeModal = document.getElementById('homeModal');
             
             if (event.target === tableModal) {
                 tableModal.style.display = 'none';
             }
-            if (event.target === homeModal) {
-                homeModal.style.display = 'none';
-            }
         }
+
+        // Handle browser back button
+        window.addEventListener('popstate', function(event) {
+            showNotification('Navigasi dengan tombol browser');
+        });
 
         // Keyboard navigation untuk modal
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape') {
                 closeModal();
+                goBack(); // Close modal and go back on Escape
+            }
+            // Alt + B untuk kembali
+            if (event.altKey && event.key === 'b') {
+                event.preventDefault();
+                goBack();
+            }
+            // Alt + H untuk home
+            if (event.altKey && event.key === 'h') {
+                event.preventDefault();
+                goHome();
             }
         });
 
@@ -582,6 +630,7 @@
             document.body.style.transition = 'opacity 0.5s ease-in';
             setTimeout(() => {
                 document.body.style.opacity = '1';
+                showNotification('Gunakan tombol navigasi atau Alt+B untuk kembali');
             }, 100);
         });
     </script>
